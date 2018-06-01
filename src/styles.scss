@@ -1,24 +1,368 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./assets/styles/app.scss";
 
 body {
-    margin: 0;
+  background: $background;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Roboto, "Segoe UI", Open Sans,
+    "Battambang", cursive, Helvetica Neue, Helvetica, Arial, sans-serif;
+  color: $color;
 }
 
 puc-cala-app {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 56px;
-    bottom: 0;
-    left: 0;
-    right: 0;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: $height;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 app-navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 2;
-    box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.12);
+  color: #000;
+  .mat-toolbar.mat-primary {
+    background: $primary;
+  }
+  .mat-toolbar-multiple-rows {
+    min-height: $height;
+    .mat-toolbar-row,
+    .mat-toolbar-single-row {
+      height: $height;
+    }
+  }
+}
+.mat-toolbar.mat-primary {
+  background: $stepper;
+}
+
+app-component-body {
+  .abs-bar {
+    position: absolute;
+  }
+  .mat-toolbar.mat-primary {
+    background: #f7f7f7;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.12);
+  }
+
+  .site-register-form {
+    margin-bottom: 100px;
+  }
+}
+.hero-wrapper {
+  padding-top: 30px;
+  .eyebrow-large {
+    font-family: Roboto Mono, monospace;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    line-height: 1;
+    margin: 0;
+    overflow: visible;
+  }
+  .cala-title {
+    font-size: 52px;
+    letter-spacing: -0.5px;
+    line-height: 72px;
+    font-family: Google Sans, Arial, sans-serif;
+    margin: 0;
+    padding: 32px 0 0;
+    margin-bottom: 20px;
+    font-weight: 800;
+  }
+  .primary-message {
+    font-size: 32px;
+    letter-spacing: -0.5px;
+    line-height: normal;
+    font-family: Roboto Mono, monospace, Google Sans, Arial, sans-serif, "Bayon",
+      cursive;
+    color: #333;
+    font-weight: 300;
+    &.khmer {
+      font-size: 28px;
+      margin-top: 5px;
+      margin-bottom: 30px;
+    }
+    .quote {
+      color: #757575;
+    }
+    .rotate90 {
+      transform: rotate(180deg);
+    }
+  }
+}
+.site-register-form {
+  mat-horizontal-stepper {
+    border-radius: 0px;
+    box-shadow: 0 30px 60px 1px rgba(60, 64, 67, 0.15);
+  }
+  .mat-step-header {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .mat-step-header .mat-step-label {
+    text-align: center;
+    padding: 16px 30px 0;
+    font-size: 14px;
+  }
+  .mat-horizontal-stepper-header .mat-step-icon,
+  .mat-horizontal-stepper-header .mat-step-icon-not-touched {
+    margin-right: 0;
+    flex: none;
+  }
+}
+.form-container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  margin-bottom: 100px;
+  max-width: 500px;
+  .field {
+    width: 100%;
+    display: flex;
+    .two-field {
+      width: calc(100% / 2);
+      .f-input {
+        width: 95%;
+      }
+    }
+    .f-input {
+      width: 98%;
+    }
+  }
+  .f-btn {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    width: 98%;
+  }
+}
+
+.bnt-next {
+  margin: auto;
+  margin-bottom: 24px;
+  margin-top: 16px;
+}
+.btn-primary {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #1a73e8;
+  border-radius: 2px;
+  border-width: 0;
+  color: #fff;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-family: Google Sans, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 48px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  letter-spacing: 0.5px;
+  line-height: 22px;
+  min-width: 88px;
+  overflow: hidden;
+  padding: 0 24px;
+  position: relative;
+  transition: background-color 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+}
+
+.text-block {
+  padding-top: 54px;
+  text-align: center;
+  .title {
+    font-family: Google Sans, sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 40px;
+    margin-bottom: 24px;
+    padding: 0 32px;
+  }
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+#aba_main_modal {
+  -webkit-overflow-scrolling: touch;
+  overflow-y: scroll;
+  z-index: 100000000;
+}
+
+.aba-iframe {
+  border: none;
+  width: 100%;
+  height: 100%;
+  overflow-x: no-display;
+  overflow-y: no-content;
+  border-radius: 5px;
+  max-height: 715px;
+  padding: 2px;
+  background: #fff;
+  -webkit-overflow-scrolling: touch;
+}
+#aba_merchant_request {
+  display: none;
+}
+/* The Modal (background) */
+
+.aba-modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 10000000; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.aba-modal-content {
+  margin: 0 auto; /* 15% from the top and centered */
+  margin-top: 20px;
+  width: 780px; /* Could be more or less, depending on screen size */
+  position: relative;
+  max-height: 708px;
+  height: 100%;
+  border-radius: 5px;
+}
+
+/* The Close Button */
+.aba-close {
+  color: #fff;
+  cursor: pointer;
+  float: right;
+  font-family: arial;
+  font-size: 28px;
+  margin-right: -37px;
+  position: absolute;
+  right: 0;
+  top: -11px;
+}
+.aba-close img {
+  width: 22px;
+  height: 22px;
+}
+
+.aba-loader {
+  animation: load 1s linear infinite;
+  border: 0.5em solid #045b83;
+  border-radius: 50%;
+  height: 48px;
+  left: 50%;
+  margin: -1.5em;
+  position: absolute;
+  top: 350px;
+  width: 48px;
+  z-index: 1001;
+}
+.aba-loader:after {
+  border: 0.6em solid #00cdd4;
+  border-radius: 50%;
+  bottom: 4px;
+  content: "";
+  left: 4px;
+  position: absolute;
+  right: 4px;
+  top: 4px;
+}
+.aba-loader:before {
+  border-bottom: 1em solid #00cdd4;
+  border-left: 0.7em solid transparent;
+  border-right: 0.7em solid transparent;
+  content: "";
+  height: 0;
+  left: 50%;
+  margin-left: -0.7em;
+  position: absolute;
+  top: -0.25em;
+  width: 0;
+}
+@keyframes load {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .aba-iframe {
+    height: 100%;
+  }
+}
+
+@media only screen and (max-width: 860px) {
+  .aba-modal {
+    padding-top: 30px;
+  }
+
+  .aba-modal-content {
+    width: 773px;
+  }
+
+  .aba-close {
+    margin-right: 0;
+    top: -45px;
+    right: 4px;
+  }
+}
+
+@media only screen and (max-width: 738px) {
+  .aba-modal-content {
+    width: 100%;
+    height: 94%;
+  }
+  .aba-iframe {
+    height: 100%;
+  }
+
+  .aba-modal {
+    padding: 30px 12px 0;
+  }
+
+  .aba-close {
+    margin-right: 0;
+    top: -45px;
+    right: 4px;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  /* Modal Content/Box */
+  .aba-modal-content {
+    width: 100%; /* Could be more or less, depending on screen size */
+    height: 96%;
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  div.box-container div.box-body h1 {
+    font-size: 18px;
+    margin-bottom: -4px;
+  }
+
+  .aba-iframe {
+    border: none;
+  }
+
+  .aba-close {
+    right: 30px;
+  }
 }

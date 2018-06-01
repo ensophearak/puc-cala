@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  ABA_PAYWAY_API_URL:'https://payway-dev.ababank.com/api/pwpucp/',
+  ABA_PAYWAY_API_KEY:'1be5670f9087eb7a33a67a1e71ddba72',
+  ABA_PAYWAY_MERCHANT_ID:'puc'
 };
 
 /*

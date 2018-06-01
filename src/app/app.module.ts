@@ -43,11 +43,14 @@ import {
 import { AppComponentSidenavComponent } from './app-component-sidenav/app-component-sidenav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { AppNavbarComponent } from './app-navbar/app-navbar.component';
+import { AppComponentBodyComponent } from './app-component-body/app-component-body.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
     AppComponentSidenavComponent,
-    AppNavbarComponent
+    AppNavbarComponent,
+    AppComponentBodyComponent
   ],
   imports: [
     BrowserModule,
@@ -85,6 +88,8 @@ import { AppNavbarComponent } from './app-navbar/app-navbar.component';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
+    FormsModule,
+    ReactiveFormsModule,
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
     LayoutModule
   ],

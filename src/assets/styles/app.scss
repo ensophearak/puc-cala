@@ -1,0 +1,20 @@
+@import "variable.scss";
+@import "fonts.scss";
+
+.puc-cala-site-with{
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding:34px 24px;
+}
+.puc-cala-site-logo-link{
+  display: flex;
+  align-items: center;
+  img{
+    width: 50px;
+    margin-right: 8px;
+  }
+  span{
+    color: #333;
+  }
+}

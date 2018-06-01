@@ -33,7 +33,10 @@
               },
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.min.js",
+              "src/assets/js/checkout-popup.js"
+            ]
           },
           "configurations": {
             "production": {

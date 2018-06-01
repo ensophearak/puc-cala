@@ -1,0 +1,175 @@
+<div class="hero-wrapper">
+  <div class="puc-cala-site-with">
+    <h1 class="cala-title">The CALA 2019</h1>
+    <div class="primary-message">
+      <i class="material-icons rotate90 quote">
+        format_quote
+      </i>
+      Revitalization and Representation
+      <i class="material-icons quote">
+        format_quote
+      </i>
+    </div>
+    <div class="primary-message khmer">
+      <i class="material-icons rotate90 quote">
+        format_quote
+      </i>
+      ការបង្ហាញពីការធ្វើអោយមានជីវិតរស់ឡើងវិញ
+      <i class="material-icons quote">
+        format_quote
+      </i>
+    </div>
+  </div>
+</div>
+<div class="site-register-form">
+
+  <mat-horizontal-stepper [linear]="isLinear" #stepper class="puc-cala-site-with ">
+    <ng-template matStepperIcon="edit">
+      <mat-icon>check</mat-icon>
+    </ng-template>
+    <mat-step [stepControl]="firstFormGroup">
+      <ng-template matStepLabel>Personal Information</ng-template>
+
+      <form [formGroup]="firstFormGroup">
+        <input type="hidden" name="hash" [value]="getHash('S001',270)" id="hash" />
+
+        <div class="form-container">
+
+          <div class="text-block">
+            <div class="title">
+              Personal Information
+            </div>
+            <div class="body">
+
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="two-field">
+              <mat-form-field class="f-input">
+                <input matInput placeholder="First Name" formControlName="first_name">
+                <mat-error *ngIf="firstFormGroup.controls['first_name'].hasError('required') && firstFormGroup.controls['first_name'].touched">First name is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="two-field">
+              <mat-form-field class="f-input">
+                <input matInput placeholder="Last Name" formControlName="last_name">
+                <mat-error *ngIf="firstFormGroup.controls['last_name'].hasError('required') && firstFormGroup.controls['last_name'].touched">Last name is required</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="field">
+            <mat-form-field class="f-input">
+              <input matInput placeholder="Phone Number" formControlName="phone_number">
+              <mat-error *ngIf="firstFormGroup.controls['phone_number'].hasError('required') && firstFormGroup.controls['phone_number'].touched">Phone number is required</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="field">
+            <mat-form-field class="f-input">
+              <input matInput placeholder="Email" formControlName="email">
+              <mat-error *ngIf="firstFormGroup.controls['email'].hasError('required') && firstFormGroup.controls['email'].touched">Email is required</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="field">
+            <div class="two-field">
+              <mat-form-field class="f-input">
+                <input matInput placeholder="Nationality" formControlName="nationality">
+                <mat-error *ngIf="firstFormGroup.controls['nationality'].hasError('required') && firstFormGroup.controls['nationality'].touched">Nationality is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="two-field">
+              <mat-form-field class="f-input">
+                <input matInput placeholder="Title" formControlName="title">
+                <mat-error *ngIf="firstFormGroup.controls['title'].hasError('required') && firstFormGroup.controls['title'].touched">Title is required</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="two-field">
+              <mat-form-field class="f-input">
+                <input matInput placeholder="City" formControlName="city">
+                <mat-error *ngIf="firstFormGroup.controls['city'].hasError('required') && firstFormGroup.controls['city'].touched">City is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="two-field">
+              <mat-form-field class="f-input">
+                <input matInput placeholder="Country" formControlName="country">
+                <mat-error *ngIf="firstFormGroup.controls['country'].hasError('required') && firstFormGroup.controls['country'].touched">Country is required</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="two-field">
+              <mat-form-field class="f-input">
+                <input matInput placeholder="University" formControlName="university">
+                <mat-error *ngIf="firstFormGroup.controls['university'].hasError('required') && firstFormGroup.controls['university'].touched">University is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="two-field">
+              <mat-form-field class="f-input">
+                <input matInput placeholder="Zip code" formControlName="zip_code">
+                <mat-error *ngIf="firstFormGroup.controls['zip_code'].hasError('required') && firstFormGroup.controls['zip_code'].touched">Zip code is required</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="field">
+            <mat-form-field class="f-input">
+              <input matInput placeholder="Address" formControlName="address">
+              <mat-error *ngIf="firstFormGroup.controls['address'].hasError('required') && firstFormGroup.controls['address'].touched">Address is required</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="field">
+            <mat-form-field class="f-input">
+              <input matInput placeholder="Emergency Contact" formControlName="emergency_contact">
+            </mat-form-field>
+          </div>
+
+          <div class="field">
+            <mat-form-field class="f-input">
+              <input matInput placeholder="Emergency Phone Number" formControlName="emc_phone_number">
+            </mat-form-field>
+          </div>
+
+          <div class="field">
+            <mat-form-field class="f-input">
+              <input matInput placeholder="Emergency Email" formControlName="emc_email">
+            </mat-form-field>
+          </div>
+
+          <div class="field f-btn">
+            <button class="bnt-next btn-primary" mat-button (click)="onCheckOut()">Next</button>
+          </div>
+
+        </div>
+
+      </form>
+
+    </mat-step>
+    <mat-step [stepControl]="firstFormGroup">
+      <ng-template matStepLabel>Liability Form</ng-template>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <ng-template matStepLabel>Conference Packages</ng-template>
+    </mat-step>
+
+  </mat-horizontal-stepper>
+</div>
+
+
+<div id="aba_main_modal" class="aba-modal">
+  <!— Modal content —>
+  <div class="aba-modal-content">
+    <form method="POST" target="aba_webservice" [action]="getUrl()" id="aba_merchant_request">
+      <input type="hidden" name="hash" [value]="getHash('S002',270)" id="hash" />
+      <input type="hidden" name="tran_id" value="S002" id="tran_id" />
+      <input type="hidden" name="amount" value="270" id="amount" />
+    </form>
+  </div>
+</div>
