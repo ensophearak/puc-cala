@@ -259,34 +259,20 @@ app-component-body {
   margin-top: 16px;
 }
 .btn-primary {
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
   background-color: #1a73e8;
-  border-radius: 2px;
-  border-width: 0;
-  color: #fff;
-  cursor: pointer;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  font-family: Google Sans, sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  height: 48px;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  letter-spacing: 0.5px;
-  line-height: 22px;
-  min-width: 88px;
-  overflow: hidden;
-  padding: 0 24px;
-  position: relative;
-  transition: background-color 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+  color: white;
+  font-family: Avenir;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 12px 30px;
+  margin-top: 35px;
+  border-radius: 9999px !important;
+  transition: 150ms;
+  text-align: center;
+  -webkit-transition: 150ms;
 }
 
 .text-block {
@@ -480,4 +466,24 @@ app-component-body {
 }
 .package-Info{
   height: 200px;
+}
+
+.mat-checkbox-layout .mat-checkbox-label{
+  line-height: 24px;
+  white-space: normal;
+  margin-left: 10px;
+  color: #111;
+}
+.body{
+  p{
+    text-align: left;
+  }
+}
+
+.mat-step-header .mat-step-icon {
+  background-color: #1a73e8;
+  color: #fff;
+}
+.mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: #1a73e8;
 }

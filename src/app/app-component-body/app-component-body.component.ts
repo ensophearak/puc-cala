@@ -42,6 +42,8 @@ export class AppComponentBodyComponent implements OnInit {
   emergency_contact: AbstractControl;
   emc_phone_number: AbstractControl;
   emc_email: AbstractControl;
+  isTerm:AbstractControl
+  
 
   conference_package: AbstractControl;
 
@@ -65,7 +67,7 @@ export class AppComponentBodyComponent implements OnInit {
       nationality: [null,],
       title: [null, ],
       phone_number: [null, Validators.required],
-      email: [null, Validators.required],
+      email: [null, Validators.required,],
       address: [null, ],
       city: [null, ],
       country: [null, Validators.compose([Validators.required,this.validSubject.bind(this)])],
@@ -74,6 +76,7 @@ export class AppComponentBodyComponent implements OnInit {
       emergency_contact: [null, ],
       emc_phone_number: [null, ],
       emc_email: [null,],
+      isTerm:[false,Validators.required]
     });
 
     this.secondFormGroup = this.fb.group({
@@ -98,11 +101,9 @@ export class AppComponentBodyComponent implements OnInit {
     this.emergency_contact = this.firstFormGroup.controls['emergency_contact'];
     this.emc_phone_number = this.firstFormGroup.controls['emc_phone_number'];
     this.emc_email = this.firstFormGroup.controls['emc_email'];
-    
-    
+    this.isTerm=this.firstFormGroup.controls['isTerm']
 
   };
-
 
   public validSubject(control: AbstractControl) {
     const value = control.value;

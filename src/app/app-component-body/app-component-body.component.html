@@ -31,7 +31,6 @@
       <ng-template matStepLabel>Personal Information</ng-template>
 
       <form [formGroup]="firstFormGroup">
-        <!-- <input type="hidden" name="hash" [value]="getHash('S001',270)" id="hash" /> -->
 
         <div class="form-container">
 
@@ -64,8 +63,8 @@
               <mat-form-field class="f-input">
                 <input matInput [matAutocomplete]="autoCategory" placeholder="Choose country" formControlName="country" required>
                 <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="onClear()">
-                    <mat-icon>close</mat-icon>
-                  </button>
+                  <mat-icon>close</mat-icon>
+                </button>
                 <mat-autocomplete #autoCategory="matAutocomplete" (optionSelected)="_selected($event)" [displayWith]="displayItem">
                   <mat-option *ngFor="let item of countries | async" [value]="item">
                     <span class="flex-box">
@@ -103,12 +102,12 @@
           <div class="field">
             <div class="two-field">
               <mat-form-field class="f-input">
-                <input matInput placeholder="Nationality" formControlName="nationality">
+                <input matInput placeholder="Zip code" formControlName="zip_code">
               </mat-form-field>
             </div>
             <div class="two-field">
               <mat-form-field class="f-input">
-                <input matInput placeholder="Title" formControlName="title">
+                <input matInput placeholder="Nationality" formControlName="nationality">
               </mat-form-field>
             </div>
           </div>
@@ -121,7 +120,7 @@
             </div>
             <div class="two-field">
               <mat-form-field class="f-input">
-                <input matInput placeholder="Zip code" formControlName="zip_code">
+                <input matInput placeholder="Title" formControlName="title">
               </mat-form-field>
             </div>
           </div>
@@ -145,13 +144,28 @@
           </div>
 
           <div class="field">
-              <mat-form-field class="f-input">
-                <textarea matInput placeholder="Address" formControlName="address"></textarea>
-              </mat-form-field>
-            </div>
+            <mat-form-field class="f-input">
+              <textarea matInput placeholder="Address" formControlName="address"></textarea>
+            </mat-form-field>
+          </div>
+
+          <div class="field">
+            <mat-checkbox class="f-input" formControlName="isTerm" required>
+              I accept the Terms and Conditions of CALA Conference and agree with CALA Conference’s immediate performance of services.
+              I also acknowledge that I cannot withdraw from CALA Conference’s service agreement.
+            </mat-checkbox>
+          </div>
+
+          <div class="field">
+            <p>All registrations to the CALA 2019 are refundable any time prior to the end of August, that is August 31st, 2018.
+              After this, withdraws cannot receive a refund.
+            </p>
+          </div>
 
           <div class="field f-btn">
-            <button class="bnt-next btn-primary" [disabled]="!firstFormGroup.valid || process" (click)="create(form.value)" mat-button
+            <button class="bnt-next btn-primary" 
+            [disabled]="!firstFormGroup.valid || process" 
+            mat-button
               (click)="onCheckOut()">Next</button>
           </div>
 
@@ -162,6 +176,79 @@
     </mat-step>
     <mat-step [stepControl]="secondFormGroup">
       <ng-template matStepLabel>Liability Form</ng-template>
+      <form [formGroup]="firstFormGroup">
+
+        <div class="form-container package">
+
+          <div class="text-block">
+            <div class="title">
+                Liability Form
+            </div>
+            <div class="body">
+              <p>
+                I HEREBY ASSUME ALL OF THE RISKS OF PARTICIPATING IN ANY/ALL ACTIVITIES ASSOCIATED WITH THIS EVENT, including by way of example
+                and not limitation, any risks that may arise from negligence or carelessness on the part of the persons or
+                entities being released, from dangerous or defective equipment or property owned, maintained, or controlled
+                by them, or because of their possible liability without fault. I certify that I am physically fit, have sufficiently
+                prepared or trained for participation in this activity, and have not been advised to not participate by a
+                qualified medical professional. I certify that there are no health-related reasons or problems which preclude
+                my participation in this activity. I acknowledge that this Accident Waiver and Release of Liability Form
+                will be used by the event holders, sponsors, and organizers of the activity in which I may participate, and
+                that it will govern my actions and responsibilities at said activity. In consideration of my application
+                and permitting me to participate in this activity, I hereby take action for myself, my executors, administrators,
+                heirs, next of kin, successors, and assigns as follows:
+              </p>
+
+              <p>
+                (A) I WAIVE, RELEASE, AND DISCHARGE from any and all liability, including but not limited to, liability arising from the
+                negligence or fault of the entities or persons released, for my death, disability, personal injury, property
+                damage, property theft, or actions of any kind which may hereafter occur to me including my traveling to
+                and from this activity, THE FOLLOWING ENTITIES OR PERSONS: The Soil Ecology Society, (SES) and/or their directors,
+                officers, employees, volunteers, representatives, and agents, and the activity holders, sponsors, and volunteers;
+
+              </p>
+
+              <p>
+                (B) INDEMNIFY, HOLD HARMLESS, AND PROMISE NOT TO SUE the entities or persons mentioned in this paragraph from any and all
+                liabilities or claims made as a result of participation in this activity, whether caused by the negligence
+                of release or otherwise.
+              </p>
+              <p>
+                I acknowledge that SES and their directors, officers, volunteers, representatives, and agents are NOT responsible for the
+                errors, omissions, acts, or failures to act of any party or entity conducting a specific activity on their
+                behalf.
+
+              </p>
+              <p>
+                I acknowledge that this activity may involve a test of a person's physical and mental limits and carries with it the potential
+                for death, serious injury, and property loss. The risks include, but are not limited to, those caused by
+                terrain, facilities, temperature, weather, condition of participants, equipment, vehicular traffic, lack
+                of hydration, and actions of other people including, but not limited to, participants, volunteers, monitors,
+                and/or producers of the activity. These risks are not only inherent to participants, but are also present
+                for volunteers.
+
+              </p>
+              <p>I hereby consent to receive medical treatment which may be deemed advisable in the event of injury, accident,
+                and/or illness during this activity. I understand while participating in this activity, I may be photographed.
+                I agree to allow my photo, video, or film likeness to be used for any legitimate purpose by the activity
+                holders, producers, sponsors, organizers, and assigns. </p>
+              <p>The Accident Waiver and Release of Liability Form shall be construed broadly to provide a release and waiver
+                to the maximum extent permissible under applicable law.
+              </p>
+              <p>I CERTIFY THAT I HAVE READ THIS DOCUMENT AND I FULLY UNDERSTAND ITS CONTENT. I AM AWARE THAT THIS IS A RELEASE
+                OF LIABILITY AND A CONTRACT AND I SIGN IT OF MY OWN FREE WILL.
+              </p>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="field f-btn">
+              <button class="bnt-next btn-primary" matStepperNext mat-button>I Agree</button>
+            </div>
+          </div>
+
+        </div>
+      </form>
     </mat-step>
     <mat-step [stepControl]="thirdFormGroup">
       <ng-template matStepLabel>Conference Packages</ng-template>
@@ -244,6 +331,8 @@
       <input type="hidden" name="hash" [value]="getHash('S002',270)" id="hash" />
       <input type="hidden" name="tran_id" value="S002" id="tran_id" />
       <input type="hidden" name="amount" value="270" id="amount" />
+      <input type="hidden" name="firstname" value="chhe"/>
+			<input type="hidden" name="lastname" value="khemara"/>
     </form>
   </div>
 </div>
