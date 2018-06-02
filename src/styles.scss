@@ -56,7 +56,6 @@ app-component-body {
   }
 }
 .hero-wrapper {
-  padding-top: 30px;
   .eyebrow-large {
     font-family: Roboto Mono, monospace;
     font-size: 16px;
@@ -67,14 +66,13 @@ app-component-body {
     overflow: visible;
   }
   .cala-title {
-    font-size: 52px;
+    font-size: 46px;
     letter-spacing: -0.5px;
     line-height: 72px;
     font-family: Google Sans, Arial, sans-serif;
     margin: 0;
-    padding: 32px 0 0;
-    margin-bottom: 20px;
-    font-weight: 800;
+    margin-bottom: 10px;
+    font-weight: 900;
   }
   .primary-message {
     font-size: 32px;
@@ -87,7 +85,6 @@ app-component-body {
     &.khmer {
       font-size: 28px;
       margin-top: 5px;
-      margin-bottom: 30px;
     }
     .quote {
       color: #757575;
@@ -124,6 +121,9 @@ app-component-body {
   margin: auto;
   margin-bottom: 100px;
   max-width: 500px;
+  &.package{
+    max-width: 900px;
+  }
   .field {
     width: 100%;
     display: flex;
@@ -142,6 +142,114 @@ app-component-body {
     display: flex;
     justify-content: flex-end;
     width: 98%;
+  }
+}
+.con-package{
+  width: 100%;
+  display: flex;
+  justify-content: space-between; 
+  margin-top: 3%;
+  .p-item{
+    background-color: #F7F9FA;
+    width: 48%;
+    text-align: center;
+    padding: 5% 0;
+    .p-title{
+      font-family: Avenir;
+      font-size: 28px;
+      line-height: 1.25;
+      font-weight: 800;
+      color: #333;
+      margin: 0;
+      padding: 0 20px;
+      height: 80px;
+      &.regular{
+        padding-top: 20px;
+      }
+    }
+    .p-price{
+      display: flex;
+      font-family: Avenir;
+      font-size: 14px;
+      line-height: 1;
+      color: #333;
+      justify-content: center;
+      margin-top: 5%;
+      .p-currency{
+        margin-right: 4px;
+        opacity: 0.6;
+      }
+      .p-dollar{
+        font-size: 48px;
+        font-weight: 400;
+        margin-top: -3px;
+      }
+      .p-p-price{
+        font-size: 48px;
+        font-weight: 800;
+        margin: -3px 4px 0 4px;
+      }
+    }
+    .p-des{
+      color: #171e27;
+      opacity: 0.6;
+      font-size: 14px;
+      line-height: 20px;
+      margin-top: 5px;
+      padding: 0 60px;
+    }
+    .p-d-register{
+      margin-bottom: 30px;
+      .p-register{
+        background-color: #1a73e8;
+        color: white;
+        font-family: Avenir;
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        padding: 12px 30px;
+        margin-top: 35px;
+        border-radius: 9999px;
+        transition: 150ms;
+        text-align: center;
+        -webkit-transition: 150ms;
+      }
+    }
+    .p-include{
+      margin-top: 20px;
+      .p-in-title{
+        text-align: center;
+        font-family: Avenir;
+        font-size: 15px;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: rgb(39, 48, 64);
+        letter-spacing: 1px;
+        margin: 0px 0px 12px;
+      }
+      .p-in-ul{
+        text-align: center;
+        opacity: 0.8;
+        font-family: Avenir;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 2;
+        color: rgb(39, 48, 64);
+        margin: 0px;
+        padding: 0px;
+        list-style-type: none;
+        padding: 0 50px;
+        .p-in-li{
+          color: #111;
+          display: list-item;
+          text-align: -webkit-match-parent;
+        }
+      }
+    }
+
+    
   }
 }
 
@@ -365,4 +473,11 @@ app-component-body {
   .aba-close {
     right: 30px;
   }
+}
+.mat-button.mat-accent[disabled], .mat-button.mat-primary[disabled], .mat-button.mat-warn[disabled], .mat-button[disabled][disabled], .mat-icon-button.mat-accent[disabled], .mat-icon-button.mat-primary[disabled], .mat-icon-button.mat-warn[disabled], .mat-icon-button[disabled][disabled], .mat-stroked-button.mat-accent[disabled], .mat-stroked-button.mat-primary[disabled], .mat-stroked-button.mat-warn[disabled], .mat-stroked-button[disabled][disabled]{
+  color: rgba(0,0,0,.26)!important;
+  background: rgba(0,0,0,0.12)!important;
+}
+.package-Info{
+  height: 200px;
 }

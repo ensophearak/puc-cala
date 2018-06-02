@@ -31,7 +31,7 @@
       <ng-template matStepLabel>Personal Information</ng-template>
 
       <form [formGroup]="firstFormGroup">
-        <input type="hidden" name="hash" [value]="getHash('S001',270)" id="hash" />
+        <!-- <input type="hidden" name="hash" [value]="getHash('S001',270)" id="hash" /> -->
 
         <div class="form-container">
 
@@ -47,58 +47,68 @@
           <div class="field">
             <div class="two-field">
               <mat-form-field class="f-input">
-                <input matInput placeholder="First Name" formControlName="first_name">
+                <input matInput placeholder="First Name" formControlName="first_name" required>
                 <mat-error *ngIf="firstFormGroup.controls['first_name'].hasError('required') && firstFormGroup.controls['first_name'].touched">First name is required</mat-error>
               </mat-form-field>
             </div>
             <div class="two-field">
               <mat-form-field class="f-input">
-                <input matInput placeholder="Last Name" formControlName="last_name">
+                <input matInput placeholder="Last Name" formControlName="last_name" required>
                 <mat-error *ngIf="firstFormGroup.controls['last_name'].hasError('required') && firstFormGroup.controls['last_name'].touched">Last name is required</mat-error>
               </mat-form-field>
             </div>
           </div>
 
           <div class="field">
-            <mat-form-field class="f-input">
-              <input matInput placeholder="Phone Number" formControlName="phone_number">
-              <mat-error *ngIf="firstFormGroup.controls['phone_number'].hasError('required') && firstFormGroup.controls['phone_number'].touched">Phone number is required</mat-error>
-            </mat-form-field>
+            <div class="two-field">
+              <mat-form-field class="f-input">
+                <input matInput [matAutocomplete]="autoCategory" placeholder="Choose country" formControlName="country" required>
+                <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="onClear()">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                <mat-autocomplete #autoCategory="matAutocomplete" (optionSelected)="_selected($event)" [displayWith]="displayItem">
+                  <mat-option *ngFor="let item of countries | async" [value]="item">
+                    <span class="flex-box">
+                      <img style="vertical-align:middle; margin-right: 5px" aria-hidden src="{{item?.flag}}" height="25" width="40" />
+                      <span>{{item?.name }}</span>
+                    </span>
+                  </mat-option>
+                </mat-autocomplete>
+                <mat-error *ngIf="firstFormGroup.controls['country'].hasError('required') && firstFormGroup.controls['country'].touched">Country is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="two-field">
+              <mat-form-field class="f-input">
+                <span matPrefix>{{callingCodes}} &nbsp;</span>
+                <input matInput placeholder="Phone Number" formControlName="phone_number" required>
+                <mat-error *ngIf="firstFormGroup.controls['phone_number'].hasError('required') && firstFormGroup.controls['phone_number'].touched">Phone number is required</mat-error>
+              </mat-form-field>
+            </div>
           </div>
 
           <div class="field">
-            <mat-form-field class="f-input">
-              <input matInput placeholder="Email" formControlName="email">
-              <mat-error *ngIf="firstFormGroup.controls['email'].hasError('required') && firstFormGroup.controls['email'].touched">Email is required</mat-error>
-            </mat-form-field>
+            <div class="two-field">
+              <mat-form-field class="f-input">
+                <input matInput placeholder="Email" formControlName="email" required>
+                <mat-error *ngIf="firstFormGroup.controls['email'].hasError('required') && firstFormGroup.controls['email'].touched">Email is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="two-field">
+              <mat-form-field class="f-input">
+                <input matInput placeholder="City" formControlName="city">
+              </mat-form-field>
+            </div>
           </div>
 
           <div class="field">
             <div class="two-field">
               <mat-form-field class="f-input">
                 <input matInput placeholder="Nationality" formControlName="nationality">
-                <mat-error *ngIf="firstFormGroup.controls['nationality'].hasError('required') && firstFormGroup.controls['nationality'].touched">Nationality is required</mat-error>
               </mat-form-field>
             </div>
             <div class="two-field">
               <mat-form-field class="f-input">
                 <input matInput placeholder="Title" formControlName="title">
-                <mat-error *ngIf="firstFormGroup.controls['title'].hasError('required') && firstFormGroup.controls['title'].touched">Title is required</mat-error>
-              </mat-form-field>
-            </div>
-          </div>
-
-          <div class="field">
-            <div class="two-field">
-              <mat-form-field class="f-input">
-                <input matInput placeholder="City" formControlName="city">
-                <mat-error *ngIf="firstFormGroup.controls['city'].hasError('required') && firstFormGroup.controls['city'].touched">City is required</mat-error>
-              </mat-form-field>
-            </div>
-            <div class="two-field">
-              <mat-form-field class="f-input">
-                <input matInput placeholder="Country" formControlName="country">
-                <mat-error *ngIf="firstFormGroup.controls['country'].hasError('required') && firstFormGroup.controls['country'].touched">Country is required</mat-error>
               </mat-form-field>
             </div>
           </div>
@@ -107,22 +117,13 @@
             <div class="two-field">
               <mat-form-field class="f-input">
                 <input matInput placeholder="University" formControlName="university">
-                <mat-error *ngIf="firstFormGroup.controls['university'].hasError('required') && firstFormGroup.controls['university'].touched">University is required</mat-error>
               </mat-form-field>
             </div>
             <div class="two-field">
               <mat-form-field class="f-input">
                 <input matInput placeholder="Zip code" formControlName="zip_code">
-                <mat-error *ngIf="firstFormGroup.controls['zip_code'].hasError('required') && firstFormGroup.controls['zip_code'].touched">Zip code is required</mat-error>
               </mat-form-field>
             </div>
-          </div>
-
-          <div class="field">
-            <mat-form-field class="f-input">
-              <input matInput placeholder="Address" formControlName="address">
-              <mat-error *ngIf="firstFormGroup.controls['address'].hasError('required') && firstFormGroup.controls['address'].touched">Address is required</mat-error>
-            </mat-form-field>
           </div>
 
           <div class="field">
@@ -143,8 +144,15 @@
             </mat-form-field>
           </div>
 
+          <div class="field">
+              <mat-form-field class="f-input">
+                <textarea matInput placeholder="Address" formControlName="address"></textarea>
+              </mat-form-field>
+            </div>
+
           <div class="field f-btn">
-            <button class="bnt-next btn-primary" mat-button (click)="onCheckOut()">Next</button>
+            <button class="bnt-next btn-primary" [disabled]="!firstFormGroup.valid || process" (click)="create(form.value)" mat-button
+              (click)="onCheckOut()">Next</button>
           </div>
 
         </div>
@@ -152,11 +160,77 @@
       </form>
 
     </mat-step>
-    <mat-step [stepControl]="firstFormGroup">
+    <mat-step [stepControl]="secondFormGroup">
       <ng-template matStepLabel>Liability Form</ng-template>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup">
+    <mat-step [stepControl]="thirdFormGroup">
       <ng-template matStepLabel>Conference Packages</ng-template>
+      <form [formGroup]="thirdFormGroup">
+        <div class="form-container package">
+
+          <div class="text-block">
+            <div class="title">
+              Conference Packages
+            </div>
+            <div class="body">
+
+            </div>
+          </div>
+
+          <div class="con-package">
+            <div class="p-item">
+              <div class="package-Info">
+                <h3 class="p-title regular">Regular Package</h3>
+                <div class="p-price">
+                  <div class="p-currency">USD</div>
+                  <div class="p-dollar">$</div>
+                  <div class="p-p-price">300</div>
+                </div>
+                <div class="p-des">cala conference</div>
+              </div>
+              <div class="p-d-register">
+                <a mat-button class="p-register">Register Now</a>
+              </div>
+              <div class="p-include">
+                <h3 class="p-in-title">Package Include:</h3>
+                <ul class="p-in-ul">
+                  <li>Daily buffet lunch</li>
+                  <li>Morngin break refreshments</li>
+                  <li>Afternoon break refreshments</li>
+                  <li>On buffet dinner with a cultural show</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="p-item">
+              <div class="package-Info">
+                <h3 class="p-title">Regular Package Plus Sightseeing</h3>
+                <div class="p-price">
+                  <div class="p-currency">USD</div>
+                  <div class="p-dollar">$</div>
+                  <div class="p-p-price">400</div>
+                </div>
+                <div class="p-des">cala conference and sightseeing / anthropolofical program</div>
+              </div>
+              <div class="p-d-register">
+                <button mat-button class="p-register">Register Now</button>
+              </div>
+              <div class="p-include">
+                <h3 class="p-in-title">Package Include:</h3>
+                <ul class="p-in-ul">
+                  <li>Daily buffet lunch</li>
+                  <li>Morngin break refreshments</li>
+                  <li>Afternoon break refreshments</li>
+                  <li>On buffet dinner with a cultural show</li>
+                  <li>1 day pass access to all temples in Siem Reap including Angkor Wat</li>
+                  <li>lunch for the sightseeing tour</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </form>
     </mat-step>
 
   </mat-horizontal-stepper>

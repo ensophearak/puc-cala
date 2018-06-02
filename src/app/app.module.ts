@@ -6,6 +6,11 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+
+import { HttpModule } from '@angular/http';
+import { ApiService } from './utils.lib';
+
+
 import {
   MatAutocompleteModule,
   MatButtonModule,
@@ -39,12 +44,15 @@ import {
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule,
+  MatFormFieldModule,
+  
 } from '@angular/material';
 import { AppComponentSidenavComponent } from './app-component-sidenav/app-component-sidenav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 import { AppComponentBodyComponent } from './app-component-body/app-component-body.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +61,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppComponentBodyComponent
   ],
   imports: [
+    HttpModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -69,6 +78,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatGridListModule,
     MatIconModule,
     MatInputModule,
+    MatFormFieldModule,
     MatListModule,
     MatMenuModule,
     MatNativeDateModule,
@@ -93,7 +103,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
     LayoutModule
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
