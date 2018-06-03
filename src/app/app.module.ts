@@ -9,9 +9,6 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { HttpModule } from '@angular/http';
 import { ApiService } from './utils.lib';
 
-import * as firebase from 'firebase';
-firebase.initializeApp(environment.firebase);
-
 import {
   MatAutocompleteModule,
   MatButtonModule,
