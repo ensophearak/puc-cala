@@ -23,7 +23,7 @@
 </div>
 <div class="site-register-form">
 
-  <mat-horizontal-stepper [linear]="isLinear" #stepper class="puc-cala-site-with ">
+  <mat-horizontal-stepper (selectionChange)="onSelectedSpepper($event)" [linear]="true" #stepper class="puc-cala-site-with ">
     <ng-template matStepperIcon="edit">
       <mat-icon>check</mat-icon>
     </ng-template>
@@ -61,7 +61,7 @@
           <div class="field">
             <div class="two-field">
               <mat-form-field class="f-input">
-                <input matInput [matAutocomplete]="autoCategory" placeholder="Choose country" formControlName="country" required>
+                <input matInput [matAutocomplete]="autoCategory" placeholder="Select Country" formControlName="country" required>
                 <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="onClear()">
                   <mat-icon>close</mat-icon>
                 </button>
@@ -73,6 +73,9 @@
                     </span>
                   </mat-option>
                 </mat-autocomplete>
+                <mat-error *ngIf="country.hasError('validKey') && !country.hasError('required')">
+                  Please select country from list you cannot continue without select.
+                </mat-error>
                 <mat-error *ngIf="firstFormGroup.controls['country'].hasError('required') && firstFormGroup.controls['country'].touched">Country is required</mat-error>
               </mat-form-field>
             </div>
@@ -89,6 +92,9 @@
             <div class="two-field">
               <mat-form-field class="f-input">
                 <input matInput placeholder="Email" formControlName="email" required>
+                <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+                  Please enter a valid email address
+                </mat-error>
                 <mat-error *ngIf="firstFormGroup.controls['email'].hasError('required') && firstFormGroup.controls['email'].touched">Email is required</mat-error>
               </mat-form-field>
             </div>
@@ -120,11 +126,16 @@
             </div>
             <div class="two-field">
               <mat-form-field class="f-input">
-                <input matInput placeholder="Title" formControlName="title">
+                <input matInput placeholder="Student ID" formControlName="student_id">
               </mat-form-field>
             </div>
           </div>
 
+          <div class="field">
+            <mat-form-field class="f-input">
+              <input matInput placeholder="Title" formControlName="title">
+            </mat-form-field>
+          </div>
           <div class="field">
             <mat-form-field class="f-input">
               <input matInput placeholder="Emergency Contact" formControlName="emergency_contact">
@@ -163,10 +174,7 @@
           </div>
 
           <div class="field f-btn">
-            <button class="bnt-next btn-primary" 
-            [disabled]="!firstFormGroup.valid || process" 
-            mat-button
-              (click)="onCheckOut()">Next</button>
+            <button class="p-register" (click)="_onCompletedForm(stepper)" [disabled]="!firstFormGroup.valid || process" mat-button>Next</button>
           </div>
 
         </div>
@@ -176,13 +184,13 @@
     </mat-step>
     <mat-step [stepControl]="secondFormGroup">
       <ng-template matStepLabel>Liability Form</ng-template>
-      <form [formGroup]="firstFormGroup">
+      <form [formGroup]="secondFormGroup">
 
         <div class="form-container package">
 
           <div class="text-block">
             <div class="title">
-                Liability Form
+              Liability Form
             </div>
             <div class="body">
               <p>
@@ -243,7 +251,7 @@
 
           <div class="field">
             <div class="field f-btn">
-              <button class="bnt-next btn-primary" matStepperNext mat-button>I Agree</button>
+              <button class="p-register" (click)="_onIAgree(stepper)" mat-button>I Agree</button>
             </div>
           </div>
 
@@ -268,15 +276,26 @@
             <div class="p-item">
               <div class="package-Info">
                 <h3 class="p-title regular">Regular Package</h3>
+                <div class="p-des">{{item?.type}}</div>
                 <div class="p-price">
                   <div class="p-currency">USD</div>
                   <div class="p-dollar">$</div>
-                  <div class="p-p-price">300</div>
+                  <div class="p-p-price">{{item?.price}}</div>
                 </div>
                 <div class="p-des">cala conference</div>
               </div>
               <div class="p-d-register">
-                <a mat-button class="p-register">Register Now</a>
+                <div class="quantity">
+                  <button mat-icon-button (click)="onRemove(false)">
+                    <mat-icon aria-label="Example icon-button with a heart icon">remove</mat-icon>
+                  </button>
+                  <span class="qty">{{qty}}</span>
+                  <button mat-icon-button (click)="onPlus(false)">
+                    <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+                  </button>
+                </div>
+
+                <button mat-button class="p-register" [disabled]="loading" (click)="onCheckOut(false)">Register Now</button>
               </div>
               <div class="p-include">
                 <h3 class="p-in-title">Package Include:</h3>
@@ -291,16 +310,29 @@
 
             <div class="p-item">
               <div class="package-Info">
+
                 <h3 class="p-title">Regular Package Plus Sightseeing</h3>
+                <div class="p-des">{{itemPlue?.type}}</div>
                 <div class="p-price">
                   <div class="p-currency">USD</div>
                   <div class="p-dollar">$</div>
-                  <div class="p-p-price">400</div>
+                  <div class="p-p-price">{{itemPlue?.price}}</div>
                 </div>
                 <div class="p-des">cala conference and sightseeing / anthropolofical program</div>
               </div>
               <div class="p-d-register">
-                <button mat-button class="p-register">Register Now</button>
+
+                <div class="quantity">
+                  <button mat-icon-button (click)="onRemove(true)">
+                    <mat-icon aria-label="Example icon-button with a heart icon">remove</mat-icon>
+                  </button>
+                  <span class="qty">{{qtyPlus}}</span>
+                  <button mat-icon-button (click)="onPlus(true)">
+                    <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+                  </button>
+                </div>
+
+                <button mat-button class="p-register" [disabled]="loading" (click)="onCheckOut(true)">Register Now</button>
               </div>
               <div class="p-include">
                 <h3 class="p-in-title">Package Include:</h3>
@@ -325,14 +357,15 @@
 
 
 <div id="aba_main_modal" class="aba-modal">
-  <!— Modal content —>
   <div class="aba-modal-content">
     <form method="POST" target="aba_webservice" [action]="getUrl()" id="aba_merchant_request">
-      <input type="hidden" name="hash" [value]="getHash('S002',270)" id="hash" />
-      <input type="hidden" name="tran_id" value="S002" id="tran_id" />
-      <input type="hidden" name="amount" value="270" id="amount" />
-      <input type="hidden" name="firstname" value="chhe"/>
-			<input type="hidden" name="lastname" value="khemara"/>
+      <input type="hidden" name="hash" [value]="getHash()" id="hash" />
+      <input type="hidden" name="tran_id" [value]="tran_id" id="tran_id" />
+      <input type="hidden" name="amount" [value]="amount" id="amount" />
+      <input type="hidden" name="firstname" [value]="firstname" />
+      <input type="hidden" name="lastname" [value]="lastname" />
+      <input type="hidden" name="phone" [value]="phone" />
+      <input type="hidden" name="email" [value]="aba_email" />
     </form>
   </div>
 </div>

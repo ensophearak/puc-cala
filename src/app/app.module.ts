@@ -5,11 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
 
 import { HttpModule } from '@angular/http';
 import { ApiService } from './utils.lib';
 
+import * as firebase from 'firebase';
+firebase.initializeApp(environment.firebase);
 
 import {
   MatAutocompleteModule,
@@ -52,6 +53,10 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 import { AppComponentBodyComponent } from './app-component-body/app-component-body.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { AngularFireModule } from 'angularfire2';
+import { environment } from '../environments/environment';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 @NgModule({
   declarations: [
@@ -101,7 +106,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
-    LayoutModule
+    LayoutModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
