@@ -16,7 +16,7 @@ import { MatStepper } from '@angular/material';
 import { AngularFirestore, docChanges } from 'angularfire2/firestore';
 import * as moment from 'moment'
 import * as _ from 'lodash'
-import * as firebase from 'firebase'
+import * as firebase from 'firebase/app'
 
 
 declare var $: any;
@@ -234,7 +234,7 @@ export class AppComponentBodyComponent implements OnInit {
         if (doc.exists) {
           const myPhone=this.phone_number.value;
           if(myPhone){
-            const findPhone=myPhone.toString().trim().substring(0,1)==='0'?myPhone.substring(1,myPhone.length-1):myPhone
+            const findPhone=myPhone.toString().trim().substring(0,1)==='0'?myPhone.substring(1,myPhone.length):myPhone
             this.phone=this.callingCodes.toString()+findPhone
             abaPhone='0'+findPhone;
           }

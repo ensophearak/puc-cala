@@ -3,7 +3,7 @@
 
 .puc-cala-site-with{
   width: 100%;
-  max-width: 1400px;
+  max-width: 1000px;
   margin: 0 auto;
   padding:34px 24px;
 }
@@ -16,5 +16,28 @@
   }
   span{
     color: #333;
+  }
+}
+@media only screen and (max-device-width: 736px) {
+  .hero-wrapper .primary-message {
+    font-size: 28px !important;
+    text-align: center;
+    padding: 4px 20px;
+  }
+  .hero-wrapper .cala-title{
+    font-size: 36px !important;
+    text-align: center;
+    padding-top: 30px;
+  }
+  .hero-wrapper .primary-message.khmer{
+    padding-bottom: 30px;
+  }
+  .site-register-form .mat-step-header .mat-step-label{
+    width: 100px;
+    word-break: break-all;
+    white-space: normal;
+  }
+  .puc-cala-site-with{
+    padding: 34px 0;
   }
 }
