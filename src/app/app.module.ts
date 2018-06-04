@@ -54,13 +54,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { ThankyouComponent } from './thankyou/thankyou.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AppComponentSidenavComponent,
     AppNavbarComponent,
-    AppComponentBodyComponent
+    AppComponentBodyComponent,
+    ThankyouComponent
   ],
   imports: [
     HttpModule,
