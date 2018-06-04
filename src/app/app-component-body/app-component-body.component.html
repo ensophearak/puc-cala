@@ -161,6 +161,18 @@
           </div>
 
           <div class="field">
+            <div class="alert-info">
+              <div class="div-s">
+                <i class="material-icons">info</i>
+                <strong>Students or Affiliates</strong>
+              </div>
+              <div class="div-d">
+                <p>Please input University and Student ID to get Best offer</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
             <mat-checkbox class="f-input" formControlName="isTerm" required>
               I accept the Terms and Conditions of CALA Conference and agree with CALA Conference’s immediate performance of services.
               I also acknowledge that I cannot withdraw from CALA Conference’s service agreement.
@@ -294,8 +306,19 @@
                     <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
                   </button>
                 </div>
-
                 <button mat-button class="p-register" [disabled]="loading" (click)="onCheckOut(false)">Register Now</button>
+                <div class="p-card">
+                  <h3>with Credit/Dedit Card</h3>
+                  <div class="card-flx">
+                    <div class="box visa">
+                      <img src="../../assets/img/visa.png" />
+                    </div>
+                    <div class="box">
+                      <img src="../../assets/img/master.png" />
+                    </div>
+                  </div>
+                </div>
+
               </div>
               <div class="p-include">
                 <h3 class="p-in-title">Package Include:</h3>
@@ -331,8 +354,18 @@
                     <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
                   </button>
                 </div>
-
                 <button mat-button class="p-register" [disabled]="loading" (click)="onCheckOut(true)">Register Now</button>
+                <div class="p-card">
+                  <h3>with Credit/Dedit Card</h3>
+                  <div class="card-flx">
+                    <div class="box visa">
+                      <img src="../../assets/img/visa.png" />
+                    </div>
+                    <div class="box">
+                      <img src="../../assets/img/master.png" />
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="p-include">
                 <h3 class="p-in-title">Package Include:</h3>
@@ -347,6 +380,68 @@
               </div>
             </div>
           </div>
+
+          <div class="p-detail-all">
+            <div class="p-detail">
+              <div class="p-d-title">
+                Early Bird
+                <p>
+                  Students/Affiliates: $140
+                </p>
+                <p>
+                  Others: $170
+                </p>
+              </div>
+              <div class="p-d-des">
+                <h4>- Opens: March 1, 2018, midnight (UTC)</h4>
+                <h4>- Closes: July 7, 2018, midnight (UTC)</h4>
+              </div>
+            </div>
+
+            <div class="p-detail">
+              <div class="p-d-title">
+                Middle Bird
+                <p>
+                  Students/Affiliates: $170
+                </p>
+                <p>
+                  Others: $210
+                </p>
+              </div>
+              <div class="p-d-des">
+                <h4>- Opens: July 8, 2018, midnight (UTC)</h4>
+                <h4>- Closes: October 25, 2018, midnight (UTC)</h4>
+              </div>
+            </div>
+
+            <div class="p-detail">
+              <div class="p-d-title">
+                Late Bird
+                <p>
+                  Students/Affiliates: $200
+                </p>
+                <p>
+                  Others: $250
+                </p>
+              </div>
+              <div class="p-d-des">
+                <h4>- Opens: October 26, 2018, midnight (UTC)</h4>
+                <h4>- Closes: January 26, 2019, midnight (UTC)</h4>
+              </div>
+            </div>
+
+            <div class="alert-info pr-plus">
+              <div class="div-s">
+                <i class="material-icons">info</i>
+                <strong class="s-pr-plus">Regular Package Plus Sightseeing</strong>
+              </div>
+              <div>
+                <p>Above price
+                  <b>Plus </b>$80</p>
+              </div>
+            </div>
+          </div>
+
 
         </div>
       </form>
