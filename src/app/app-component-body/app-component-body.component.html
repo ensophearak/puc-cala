@@ -28,31 +28,42 @@
       <mat-icon>check</mat-icon>
     </ng-template>
     <mat-step [stepControl]="firstFormGroup">
-      <ng-template matStepLabel>Personal Information</ng-template>
-
-      <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Personal Information (Attendee)</ng-template>
+      <form [formGroup]="firstFormGroup" #target>
 
         <div class="form-container">
 
           <div class="text-block">
             <div class="title">
               Personal Information
+              <p>(Attendee)</p>
             </div>
-            <div class="body">
 
+            <div class="body required">
+              * Required field
             </div>
           </div>
 
+
+          <div class="field">
+            <mat-form-field class="f-input">
+              <mat-select placeholder="Title:" formControlName="title">
+                <mat-option *ngFor="let food of titles" [value]="food">
+                  {{ food.text }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
           <div class="field">
             <div class="two-field">
               <mat-form-field class="f-input">
-                <input matInput placeholder="First Name" formControlName="first_name" required>
+                <input matInput placeholder="First Name * :" formControlName="first_name">
                 <mat-error *ngIf="firstFormGroup.controls['first_name'].hasError('required') && firstFormGroup.controls['first_name'].touched">First name is required</mat-error>
               </mat-form-field>
             </div>
             <div class="two-field">
               <mat-form-field class="f-input">
-                <input matInput placeholder="Last Name" formControlName="last_name" required>
+                <input matInput placeholder="Last Name * :" formControlName="last_name">
                 <mat-error *ngIf="firstFormGroup.controls['last_name'].hasError('required') && firstFormGroup.controls['last_name'].touched">Last name is required</mat-error>
               </mat-form-field>
             </div>
@@ -61,7 +72,7 @@
           <div class="field">
             <div class="two-field">
               <mat-form-field class="f-input">
-                <input matInput [matAutocomplete]="autoCategory" placeholder="Select Country" formControlName="country" required>
+                <input matInput [matAutocomplete]="autoCategory" placeholder="Select Country * :" formControlName="country">
                 <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="onClear()">
                   <mat-icon>close</mat-icon>
                 </button>
@@ -82,95 +93,86 @@
             <div class="two-field">
               <mat-form-field class="f-input">
                 <span matPrefix>{{callingCodes}} &nbsp;</span>
-                <input matInput placeholder="Phone Number" formControlName="phone_number" required>
+                <input matInput placeholder="Phone Number * :" formControlName="phone_number">
                 <mat-error *ngIf="firstFormGroup.controls['phone_number'].hasError('required') && firstFormGroup.controls['phone_number'].touched">Phone number is required</mat-error>
               </mat-form-field>
             </div>
           </div>
 
           <div class="field">
-            <div class="two-field">
-              <mat-form-field class="f-input">
-                <input matInput placeholder="Email" formControlName="email" required>
-                <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
-                  Please enter a valid email address
-                </mat-error>
-                <mat-error *ngIf="firstFormGroup.controls['email'].hasError('required') && firstFormGroup.controls['email'].touched">Email is required</mat-error>
-              </mat-form-field>
-            </div>
-            <div class="two-field">
-              <mat-form-field class="f-input">
-                <input matInput placeholder="City" formControlName="city">
-              </mat-form-field>
-            </div>
-          </div>
-
-          <div class="field">
-            <div class="two-field">
-              <mat-form-field class="f-input">
-                <input matInput placeholder="Zip code" formControlName="zip_code">
-              </mat-form-field>
-            </div>
-            <div class="two-field">
-              <mat-form-field class="f-input">
-                <input matInput placeholder="Nationality" formControlName="nationality">
-              </mat-form-field>
-            </div>
-          </div>
-
-          <div class="field">
-            <div class="two-field">
-              <mat-form-field class="f-input">
-                <input matInput placeholder="University" formControlName="university">
-              </mat-form-field>
-            </div>
-            <div class="two-field">
-              <mat-form-field class="f-input">
-                <input matInput placeholder="Student ID" formControlName="student_id">
-              </mat-form-field>
-            </div>
-          </div>
-
-          <div class="field">
             <mat-form-field class="f-input">
-              <input matInput placeholder="Title" formControlName="title">
-            </mat-form-field>
-          </div>
-          <div class="field">
-            <mat-form-field class="f-input">
-              <input matInput placeholder="Emergency Contact" formControlName="emergency_contact">
-            </mat-form-field>
-          </div>
-
-          <div class="field">
-            <mat-form-field class="f-input">
-              <input matInput placeholder="Emergency Phone Number" formControlName="emc_phone_number">
-            </mat-form-field>
-          </div>
-
-          <div class="field">
-            <mat-form-field class="f-input">
-              <input matInput placeholder="Emergency Email" formControlName="emc_email">
-            </mat-form-field>
-          </div>
-
-          <div class="field">
-            <mat-form-field class="f-input">
-              <textarea matInput placeholder="Address" formControlName="address"></textarea>
+              <input matInput placeholder="Email * :" formControlName="email">
+              <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+                Please enter a valid email address
+              </mat-error>
+              <mat-error *ngIf="firstFormGroup.controls['email'].hasError('required') && firstFormGroup.controls['email'].touched">Email is required</mat-error>
             </mat-form-field>
           </div>
 
           <div class="field">
             <div class="alert-info">
-              <div class="div-s">
-                <i class="material-icons">info</i>
-                <strong>Students or Affiliates</strong>
-              </div>
               <div class="div-d">
-                <p>Please input University and Student ID to get Best offer</p>
+                <p>If you will attend the event as a student
+                  <b>or</b> an affiliate, please fill in below: (special price)</p>
               </div>
             </div>
           </div>
+
+          <div class="field">
+            <div class="two-field">
+              <mat-form-field class="f-input">
+                <input matInput placeholder="University Name:" formControlName="university">
+              </mat-form-field>
+            </div>
+            <div class="two-field">
+              <mat-form-field class="f-input">
+                <input matInput placeholder="Student ID:" formControlName="student_id">
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="field">
+            <mat-form-field class="f-input">
+              <input matInput placeholder="Affiliate (click below, choose, and type in your affiliate)" formControlName="affiliate">
+            </mat-form-field>
+          </div>
+          <div class="field">
+            <a href="http://cala2019.puc.edu.kh/affiliates/" target="_blank">
+              <img src="../../assets/img/main-page-affliates-banner20.jpg" />
+            </a>
+          </div>
+          <div class="field">
+            <div class="alert-info">
+              <div class="div-b">
+                <b>Emergency Contact Information</b>
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <mat-form-field class="f-input">
+              <input matInput placeholder="Contact Name:" formControlName="emergency_contact">
+            </mat-form-field>
+          </div>
+
+          <div class="field">
+            <mat-form-field class="f-input">
+              <input matInput placeholder="Emergency Phone Number:" formControlName="emc_phone_number">
+            </mat-form-field>
+          </div>
+
+          <div class="field">
+            <mat-form-field class="f-input">
+              <input matInput placeholder="Emergency Email:" formControlName="emc_email">
+            </mat-form-field>
+          </div>
+
+          <div class="field">
+            <mat-form-field class="f-input">
+              <textarea matInput placeholder="Address:" formControlName="address"></textarea>
+            </mat-form-field>
+          </div>
+
 
           <div class="field">
             <mat-checkbox class="f-input" formControlName="isTerm" required>
@@ -186,7 +188,7 @@
           </div>
 
           <div class="field f-btn">
-            <button class="p-register" (click)="_onCompletedForm(stepper)" [disabled]="!firstFormGroup.valid" mat-button>Next</button>
+            <button class="p-register" (click)="_onCompletedForm(stepper, target)" mat-button>Next</button>
           </div>
 
         </div>
@@ -199,7 +201,6 @@
       <form [formGroup]="secondFormGroup">
 
         <div class="form-container package">
-
           <div class="text-block">
             <div class="title">
               Liability Form
@@ -263,7 +264,7 @@
 
           <div class="field">
             <div class="field f-btn">
-              <button class="p-register" (click)="_onIAgree(stepper)" mat-button>I Agree</button>
+              <button class="p-register" (click)="_onIAgree(stepper, target)" mat-button>I Agree</button>
             </div>
           </div>
 
@@ -271,7 +272,7 @@
       </form>
     </mat-step>
     <mat-step [stepControl]="thirdFormGroup">
-      <ng-template matStepLabel>Conference Packages</ng-template>
+      <ng-template matStepLabel>Conference Packages / Pay</ng-template>
       <form [formGroup]="thirdFormGroup">
         <div class="form-container package">
 
@@ -286,27 +287,20 @@
 
           <div class="con-package">
             <div class="p-item">
-              <div class="package-Info">
+              <div class="package-Info regular">
                 <h3 class="p-title regular">Regular Package</h3>
-                <div class="p-typeName">{{item?.typeName}}</div>
+                <div class="p-typeName" *ngIf="item?.typeName">{{item?.typeName}}</div>
+                <div class="p-typeName" *ngIf="!item?.typeName">Is Closed</div>
                 <div class="p-price">
                   <div class="p-currency">USD</div>
                   <div class="p-dollar">$</div>
-                  <div class="p-p-price">{{item?.price}}</div>
+                  <div class="p-p-price" *ngIf="item?.price">{{item?.price}}</div>
+                  <div class="p-p-price" *ngIf="!item?.price">$250</div>
                 </div>
                 <div class="p-des">cala conference</div>
               </div>
               <div class="p-d-register">
-                <div class="quantity">
-                  <button mat-icon-button (click)="onRemove(false)">
-                    <mat-icon aria-label="Example icon-button with a heart icon">remove</mat-icon>
-                  </button>
-                  <span class="qty">{{qty}}</span>
-                  <button mat-icon-button (click)="onPlus(false)">
-                    <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
-                  </button>
-                </div>
-                <button mat-button class="p-register" [disabled]="loading" (click)="onCheckOut(false)">Register Now</button>
+                <button mat-button class="p-register" [disabled]="loading || !item" (click)="onCheckOut(false)">Pay Now</button>
                 <div class="p-card">
                   <h3>with Credit/Dedit Card</h3>
                   <div class="card-flx">
@@ -321,12 +315,12 @@
 
               </div>
               <div class="p-include">
-                <h3 class="p-in-title">Package Include:</h3>
+                <h3 class="p-in-title">Package Includes:</h3>
                 <ul class="p-in-ul">
-                  <li>Daily buffet lunch</li>
-                  <li>Morngin break refreshments</li>
+                  <li>Morning break refreshments</li>
+                  <li>Daily buffet lunches</li>
                   <li>Afternoon break refreshments</li>
-                  <li>On buffet dinner with a cultural show</li>
+                  <li>One gala buffet dinner with cultural shows</li>
                 </ul>
               </div>
             </div>
@@ -334,27 +328,19 @@
             <div class="p-item">
               <div class="package-Info">
 
-                <h3 class="p-title">Regular Package Plus Sightseeing</h3>
-                <div class="p-typeName">{{itemPlue?.typeName}}</div>
+                <h3 class="p-title">Regular Package Plus Anthropological Excursion</h3>
+                <div class="p-typeName" *ngIf="item?.typeName">{{itemPlue?.typeName}}</div>
+                <div class="p-typeName" *ngIf="!item?.typeName">Is Closed</div>
                 <div class="p-price">
                   <div class="p-currency">USD</div>
                   <div class="p-dollar">$</div>
-                  <div class="p-p-price">{{itemPlue?.price}}</div>
+                  <div class="p-p-price" *ngIf="item?.price">{{itemPlue?.price}}</div>
+                  <div class="p-p-price" *ngIf="!item?.price">330</div>
                 </div>
                 <div class="p-des">cala conference and sightseeing / anthropolofical program</div>
               </div>
               <div class="p-d-register">
-
-                <div class="quantity">
-                  <button mat-icon-button (click)="onRemove(true)">
-                    <mat-icon aria-label="Example icon-button with a heart icon">remove</mat-icon>
-                  </button>
-                  <span class="qty">{{qtyPlus}}</span>
-                  <button mat-icon-button (click)="onPlus(true)">
-                    <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
-                  </button>
-                </div>
-                <button mat-button class="p-register" [disabled]="loading" (click)="onCheckOut(true)">Register Now</button>
+                <button mat-button class="p-register" [disabled]="loading || !item" (click)="onCheckOut(true)">Pay Now</button>
                 <div class="p-card">
                   <h3>with Credit/Dedit Card</h3>
                   <div class="card-flx">
@@ -368,88 +354,77 @@
                 </div>
               </div>
               <div class="p-include">
-                <h3 class="p-in-title">Package Include:</h3>
+                <h3 class="p-in-title">Package Includes:</h3>
                 <ul class="p-in-ul">
-                  <li>Daily buffet lunch</li>
-                  <li>Morngin break refreshments</li>
+                  <li>Morning break refreshments</li>
+                  <li>Daily buffet lunches</li>
                   <li>Afternoon break refreshments</li>
-                  <li>On buffet dinner with a cultural show</li>
-                  <li>1 day pass access to all temples in Siem Reap including Angkor Wat</li>
-                  <li>lunch for the sightseeing tour</li>
+                  <li>One gala buffet dinner with cultural shows</li>
+                  <li>1-day pass for Anthropological Excursion including ancient temples visits and lunch</li>
                 </ul>
               </div>
             </div>
           </div>
 
           <div class="p-detail-all">
-            <div class="p-detail">
+            <div class="p-detail" [ngClass]="item?.type == 'EARLYBIRD' ? 'box-ac' : '' ">
               <div class="p-d-title">
-                Early Bird
+                Early Bird <span *ngIf="item?.type == 'MIDDLEBIRD' || item?.type == 'LATEBIRD'">(Closed)</span>
+                <h4>Conference</h4>
                 <p>
-                  Students/Affiliates: $140
+                  - Students/Affiliates: $140
                 </p>
                 <p>
-                  Others: $170
+                  - Others: $170
                 </p>
+                <h4>Anthropological Excursion: $80</h4>
               </div>
-              <div class="p-d-des">
-                <h4>- Opens: March 1, 2018, midnight (UTC)</h4>
-                <h4>- Closes: July 7, 2018, midnight (UTC)</h4>
+              <div class="p-d-des"> 
+                <h4>March 1 - July 7, 2018 (UTC)</h4>
               </div>
             </div>
 
-            <div class="p-detail">
+            <div class="p-detail" [ngClass]="item?.type == 'MIDDLEBIRD' ? 'box-ac' : '' ">
               <div class="p-d-title">
-                Middle Bird
+                Middle Bird <span *ngIf="item?.type == 'LATEBIRD'">(Closed)</span>
+                <h4>Conference</h4>
                 <p>
-                  Students/Affiliates: $170
+                  - Students/Affiliates: $170
                 </p>
                 <p>
-                  Others: $210
+                  - Others: $210
                 </p>
+                <h4>Anthropological Excursion: $80</h4>
               </div>
               <div class="p-d-des">
-                <h4>- Opens: July 8, 2018, midnight (UTC)</h4>
-                <h4>- Closes: October 25, 2018, midnight (UTC)</h4>
+                <h4>July 8 - October 25, 2018 (UTC)</h4>
               </div>
             </div>
 
-            <div class="p-detail">
+            <div class="p-detail" [ngClass]="item?.type == 'LATEBIRD' ? 'box-ac' : '' ">
               <div class="p-d-title">
-                Late Bird
+                Late Bird <span *ngIf="!item">(Closed)</span>
+                <h4>Conference</h4>
                 <p>
-                  Students/Affiliates: $200
+                  - Students/Affiliates: $200
                 </p>
                 <p>
-                  Others: $250
+                  - Others: $250
                 </p>
+                <h4>Anthropological Excursion: $80</h4>
               </div>
               <div class="p-d-des">
-                <h4>- Opens: October 26, 2018, midnight (UTC)</h4>
-                <h4>- Closes: January 26, 2019, midnight (UTC)</h4>
+                <h4>October 26, 2018 - January 26, 2019 (UTC)</h4>
               </div>
             </div>
 
-            <div class="alert-info pr-plus">
-              <div class="div-s">
-                <i class="material-icons">info</i>
-                <strong class="s-pr-plus">Regular Package Plus Sightseeing</strong>
-              </div>
-              <div>
-                <p>Above price
-                  <b>Plus </b>$80</p>
-              </div>
-            </div>
           </div>
-
-
         </div>
       </form>
     </mat-step>
 
   </mat-horizontal-stepper>
 </div>
-
 
 <div id="aba_main_modal" class="aba-modal">
   <div class="aba-modal-content">

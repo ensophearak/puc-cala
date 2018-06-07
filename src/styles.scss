@@ -67,7 +67,7 @@ app-component-body {
     overflow: visible;
   }
   .cala-title {
-    font-size: 46px;
+    font-size: 42px;
     letter-spacing: -0.5px;
     line-height: 72px;
     font-family: Google Sans, Arial, sans-serif;
@@ -153,6 +153,12 @@ app-component-body {
   .field {
     width: 100%;
     display: flex;
+    a{
+      img{
+        width: 56px;
+        border: solid 1px #eee;
+      }
+    }
     .two-field {
       width: calc(100% / 2);
       .f-input {
@@ -181,7 +187,7 @@ app-component-body {
     text-align: center;
     padding: 5% 0;
     .p-title{
-      font-family: Avenir;
+      font-family: Google Sans;
       font-size: 28px;
       line-height: 1.25;
       font-weight: 800;
@@ -191,11 +197,12 @@ app-component-body {
       height: 80px;
       &.regular{
         padding-top: 20px;
+        height: 60px;
       }
     }
     .p-price{
       display: flex;
-      font-family: Avenir;
+      font-family: Google Sans;
       font-size: 14px;
       line-height: 1;
       color: #333;
@@ -237,7 +244,7 @@ app-component-body {
         flex-direction: column;
         h3{
           text-align: center;
-          font-family: Avenir;
+          font-family: Roboto;
           font-size: 14px;
           font-weight: 600;
           /* text-transform: uppercase; */
@@ -276,7 +283,7 @@ app-component-body {
       margin-top: 20px;
       .p-in-title{
         text-align: center;
-        font-family: Avenir;
+        font-family: Roboto;
         font-size: 15px;
         font-weight: 600;
         text-transform: uppercase;
@@ -287,7 +294,7 @@ app-component-body {
       .p-in-ul{
         text-align: center;
         opacity: 0.8;
-        font-family: Avenir;
+        font-family: Roboto;
         font-size: 16px;
         font-weight: 500;
         line-height: 2;
@@ -323,11 +330,13 @@ app-component-body {
   border-radius: 2px;
   font-size: 16px;
   // width: 90%;
+  width: 100%;
   &.pr-plus{
     // width: 100%;
   }
   .div-s{
     display: flex;
+    align-items: center;
   }
   i {
     font-size: 26px;
@@ -335,9 +344,16 @@ app-component-body {
   }
   strong {
     padding: 0 10px;
+    // margin-left: 100px;
     &.s-pr-plus{
       padding: 10px 10px;
     }
+  }
+
+  .div-b{
+    padding: 15px 0;
+    text-align: center;
+    width: 100%;
   }
 }
 
@@ -345,18 +361,31 @@ app-component-body {
 .p-detail-all{
   display: flex;
   flex-direction: column;
-  margin-top: 3%;
+  margin-top: 20px;
   .p-detail{
     display: flex;
     background-color: #F7F9FA;
     flex-direction: row;
     padding: 15px 0 15px 20px;
+    margin-bottom: 20px;
+    &.box-ac{
+      box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    }
     .p-d-title{
       flex: 1;
       font-size: 28px;
       line-height: 1.25;
       font-weight: 800;
       color: #333;
+      h4{
+        font-size: 20px;
+        line-height: 1.5;
+        font-weight: 600;
+        letter-spacing: .004em;
+        margin: 0;
+        color: #111;
+        opacity: 0.8;
+      }
       p{
         font-size: 18px;
         line-height: 1.5;
@@ -365,18 +394,21 @@ app-component-body {
         margin: 0;
         color: #273040;
         opacity: 0.8;
+        padding-left: 25px
       }
     }
     .p-d-des{
       flex: 2;
       h4{
-        font-size: 18px;
+        font-size: 28px;
         line-height: 1.5;
         font-weight: 600;
         letter-spacing: .004em;
         margin: 0;
-        color: #273040;
+        color: #111;
         opacity: 0.8;
+        padding-top: 30px;
+        padding-left: 15px;
       }
     }
   }
@@ -390,7 +422,7 @@ app-component-body {
 .btn-primary {
   background-color: #1a73e8;
   color: white;
-  font-family: Avenir;
+  font-family: Roboto;
   font-size: 14px;
   line-height: 20px;
   font-weight: 600;
@@ -407,6 +439,10 @@ app-component-body {
 .text-block {
   padding-top: 54px;
   text-align: center;
+  .required{
+    margin-bottom: 30px;
+    text-align: left;
+  }
   .title {
     font-family: Google Sans, sans-serif;
     font-weight: 700;
@@ -414,6 +450,10 @@ app-component-body {
     line-height: 40px;
     margin-bottom: 24px;
     padding: 0 32px;
+    p{
+      margin-top: 0;
+      padding-top: 0;
+    }
   }
 }
 
@@ -608,17 +648,35 @@ app-component-body {
     text-align: left;
     color: #333;
   }
+  .required{
+    margin-bottom: 20px;
+  }
 }
 
 .mat-step-header .mat-step-icon {
   background-color: #1a73e8;
   color: #fff;
 }
+
 .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
   background-color: #1a73e8;
 }
 
+.site-register-form .mat-step-header .mat-step-label {
+  text-align: center;
+  padding: 16px 30px 0;
+  font-size: 14px;
+  width: 150px;
+  white-space: normal;
+}
+
 @media only screen and (max-width:500px) {
+  .site-register-form .mat-step-header .mat-step-label {
+    text-align: center;
+    padding: 16px 30px 0;
+    font-size: 14px;
+    width: auto;
+  }
   .form-container {
     display: flex;
     flex-direction: column;
@@ -651,9 +709,7 @@ app-component-body {
   .alert-info{
     flex-direction: column;
     padding: 10px 20px;
-    &.pr-plus{
-      // width: 90%;
-    }
+    width: 90%;
     strong {
       padding: 8px 10px;
       &.s-pr-plus{
@@ -664,13 +720,24 @@ app-component-body {
       text-align: center;
     }
   }
+ 
   .p-detail-all{
     margin-top: 10%;
     .p-detail{
       flex-direction: column;
       .p-d-des {
         margin-top: 10px;
+        h4{
+          padding-left: 0px;
+        }
       }
+    }
+  }
+
+  .package-Info{
+    height: 230px;
+    &.regular{
+      height: 160px;
     }
   }
   
@@ -680,7 +747,13 @@ app-component-body {
     justify-content: space-between;
     .p-item{
       width: 100%;
-      margin-top: 30px
+      margin-top: 30px;
+      .p-title{
+        height: 115px;
+        &.regular{
+          height: 50px;
+        }
+      }
     }
   }
   
@@ -689,6 +762,13 @@ app-component-body {
     .puc-cala-site-with{
       padding: 0;
     }
+  }
+
+  .site-register-form .mat-step-header .mat-step-label {
+    text-align: center;
+    padding: 16px 30px 0;
+    font-size: 14px;
+    width: auto;
   }
 
 }
@@ -702,3 +782,4 @@ app-component-body {
     border-radius: 2px;
   }
 }
+
