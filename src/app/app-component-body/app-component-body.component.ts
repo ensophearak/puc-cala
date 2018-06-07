@@ -1,5 +1,5 @@
 import { environment } from './../../environments/environment';
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Inject } from "@angular/core";
 import {
   FormGroup,
   AbstractControl,
@@ -14,9 +14,9 @@ import { startWith, map } from 'rxjs/operators';
 import { MatStepper } from '@angular/material';
 
 import { AngularFirestore, docChanges } from 'angularfire2/firestore';
-import * as moment from 'moment'
-import * as _ from 'lodash'
-import * as firebase from 'firebase/app'
+import * as moment from 'moment';
+import * as _ from 'lodash';
+import * as firebase from 'firebase/app';
 
 
 declare var $: any;
@@ -28,7 +28,8 @@ declare var AbaPayway: any;
   styleUrls: ["./app-component-body.component.scss"]
 })
 export class AppComponentBodyComponent implements OnInit {
-  loading=false;
+
+  loading = false;
 
   value: any;
   fdb = firebase.firestore()
@@ -51,6 +52,7 @@ export class AppComponentBodyComponent implements OnInit {
   emergency_contact: AbstractControl;
   emc_phone_number: AbstractControl;
   emc_email: AbstractControl;
+  affiliate: AbstractControl;
   isTerm: AbstractControl;
   student_id: AbstractControl
 
@@ -75,6 +77,13 @@ export class AppComponentBodyComponent implements OnInit {
   phone: string;
   aba_email: string;
 
+  titles=[
+    {key:0,text:'Dr.'},
+    {key:1,text:'Mr.'},
+    {key:2,text:'Mis.'},
+    {key:3,text:'Ms.'},
+    {key:4,text:'None'},
+  ]
 
   constructor(
     private fb: FormBuilder,
@@ -100,12 +109,12 @@ export class AppComponentBodyComponent implements OnInit {
   onSelectedSpepper(event) {
     if (event.selectedIndex === 1) {
       if (this.firstFormGroup.valid) {
-        const currentDate = moment().format('YYYYMMDD')
+        const currentDate = moment().format('YYYYMMDD');
         this.db.collection<any>('package', ref => ref.where('endDateKey', '>=', currentDate).orderBy('endDateKey'))
           .valueChanges()
           .subscribe(docs => {
             let isStudent = false;
-            if (this.university.value && this.student_id.value)
+            if ((this.university.value && this.student_id.value) || this.affiliate.value)
               isStudent = true;
             const priceList = docs.filter(m => m.isStudent === isStudent && m.code === 'REGULAR')
             const sortList = _.orderBy(priceList, ['endDateKey'], ['asc']);
@@ -134,6 +143,7 @@ export class AppComponentBodyComponent implements OnInit {
       city: [null,],
       country: [null, Validators.compose([Validators.required, this.validCountry.bind(this)])],
       university: [null,],
+      affiliate: [null,],
       zip_code: [null,],
       emergency_contact: [null,],
       emc_phone_number: [null,],
@@ -161,6 +171,7 @@ export class AppComponentBodyComponent implements OnInit {
     this.city = this.firstFormGroup.controls['city'];
     this.country = this.firstFormGroup.controls['country'];
     this.university = this.firstFormGroup.controls['university'];
+    this.affiliate = this.firstFormGroup.controls['affiliate'];
     this.zip_code = this.firstFormGroup.controls['zip_code'];
     this.emergency_contact = this.firstFormGroup.controls['emergency_contact'];
     this.emc_phone_number = this.firstFormGroup.controls['emc_phone_number'];
@@ -186,9 +197,7 @@ export class AppComponentBodyComponent implements OnInit {
   }
 
   filterSession(name: any) {
-    return this.countryList.filter(state => state.name.toLowerCase().includes(name.toLowerCase())
-      || state.name.toLowerCase().includes(name.toLowerCase())
-      || state.name.toLowerCase().includes(name.toLowerCase()));
+    return this.countryList.filter(state => state.name.toLowerCase().includes(name.toLowerCase()));
   }
 
   displayItem(item: any): string {
@@ -202,12 +211,14 @@ export class AppComponentBodyComponent implements OnInit {
   }
 
 
-  _onCompletedForm(stepper: MatStepper) {
+  _onCompletedForm(stepper: MatStepper, el) {
     stepper.next()
+    el.scrollIntoView();
   }
 
-  _onIAgree(stepper: MatStepper) {
+  _onIAgree(stepper: MatStepper, el) {
     this.iAgree.setValue(true)
+    el.scrollIntoView();
     stepper.next();
   }
 
@@ -225,18 +236,18 @@ export class AppComponentBodyComponent implements OnInit {
   onCheckOut(isPlus) {
 
     if (this.firstFormGroup.valid && this.secondFormGroup.valid) {
-      this.loading=true;
+      this.loading = true;
       const ref = this.fdb.collection('settings').doc('invoice')
-      const batch=this.fdb.batch()
-      let abaPhone=this.phone_number.value;
+      const batch = this.fdb.batch()
+      let abaPhone = this.phone_number.value;
 
       ref.get().then(doc => {
         if (doc.exists) {
-          const myPhone=this.phone_number.value;
-          if(myPhone){
-            const findPhone=myPhone.toString().trim().substring(0,1)==='0'?myPhone.substring(1,myPhone.length):myPhone
-            this.phone=this.callingCodes.toString()+findPhone
-            abaPhone='0'+findPhone;
+          const myPhone = this.phone_number.value;
+          if (myPhone) {
+            const findPhone = myPhone.toString().trim().substring(0, 1) === '0' ? myPhone.substring(1, myPhone.length) : myPhone
+            this.phone = this.callingCodes.toString() + findPhone
+            abaPhone = '0' + findPhone;
           }
 
           const prefix = moment().format('YYMMDD') + (doc.data().index + 1).toString()
@@ -247,27 +258,27 @@ export class AppComponentBodyComponent implements OnInit {
           this.phone = abaPhone;
 
           this.aba_email = this.email.value;
-          batch.update(ref,{index: doc.data().index + 1})
-          const key=this.db.createId()
-          batch.set(this.fdb.collection('enrollment').doc(key),{
-            key:key,
-            date:new Date(),
-            dateKey:moment().format('YYYYMMDD'),
+          batch.update(ref, { index: doc.data().index + 1 })
+          const key = this.db.createId()
+          batch.set(this.fdb.collection('enrollment').doc(key), {
+            key: key,
+            date: new Date(),
+            dateKey: moment().format('YYYYMMDD'),
             ...this.firstFormGroup.value,
-            isPlus:isPlus,
-            amount:this.amount,
-            tran_id:this.tran_id,
-            qty:isPlus?this.qtyPlus:this.qty,
-            package:isPlus?this.itemPlue:this.item,
-            isPaid:false,
-            status:'Draft'
+            isPlus: isPlus,
+            amount: this.amount,
+            tran_id: this.tran_id,
+            qty: isPlus ? this.qtyPlus : this.qty,
+            package: isPlus ? this.itemPlue : this.item,
+            isPaid: false,
+            status: 'Draft'
           })
           batch.commit().then(() => {
             AbaPayway.checkout()
-            this.loading=false;
-          }).catch(error=>{
+            this.loading = false;
+          }).catch(error => {
             alert(error)
-            this.loading=false;
+            this.loading = false;
           })
         }
       })
