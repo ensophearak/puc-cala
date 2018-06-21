@@ -7,6 +7,9 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Roboto, "Segoe UI", Open Sans,
     "Battambang", cursive, Helvetica Neue, Helvetica, Arial, sans-serif;
   color: $color;
+  p{
+    line-height: 23px;
+  }
 }
 
 puc-cala-app {
