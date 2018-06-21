@@ -23,7 +23,7 @@
 </div>
 <div class="site-register-form">
 
-  <mat-horizontal-stepper (selectionChange)="onSelectedSpepper($event)" [linear]="false" #stepper class="puc-cala-site-with ">
+  <mat-horizontal-stepper (selectionChange)="onSelectedSpepper($event)" [linear]="true" #stepper class="puc-cala-site-with ">
     <ng-template matStepperIcon="edit">
       <mat-icon>check</mat-icon>
     </ng-template>
@@ -224,9 +224,9 @@
                 (A) I WAIVE, RELEASE, AND DISCHARGE from any and all liability, including but not limited to, liability arising from the
                 negligence or fault of the entities or persons released, for my death, disability, personal injury, property
                 damage, property theft, or actions of any kind which may hereafter occur to me including my traveling to
-                and from this activity, THE FOLLOWING ENTITIES OR PERSONS: The Soil Ecology Society, (SES) and/or their directors,
-                officers, employees, volunteers, representatives, and agents, and the activity holders, sponsors, and volunteers;
-
+                and from this activity, THE FOLLOWING ENTITIES OR PERSONS: Conference On Asian Linguistic Anthropology, (CALA)
+                and/or their directors, officers, employees, volunteers, representatives, and agents, and the activity holders,
+                sponsors, and volunteers;
               </p>
 
               <p>
@@ -234,28 +234,32 @@
                 liabilities or claims made as a result of participation in this activity, whether caused by the negligence
                 of release or otherwise.
               </p>
+
               <p>
-                I acknowledge that SES and their directors, officers, volunteers, representatives, and agents are NOT responsible for the
+                I acknowledge that CALA and their directors, officers, volunteers, representatives, and agents are NOT responsible for the
                 errors, omissions, acts, or failures to act of any party or entity conducting a specific activity on their
                 behalf.
-
               </p>
+
               <p>
-                I acknowledge that this activity may involve a test of a person's physical and mental limits and carries with it the potential
+                I acknowledge that this activity may involve a test of a person’s physical and mental limits and carries with it the potential
                 for death, serious injury, and property loss. The risks include, but are not limited to, those caused by
                 terrain, facilities, temperature, weather, condition of participants, equipment, vehicular traffic, lack
                 of hydration, and actions of other people including, but not limited to, participants, volunteers, monitors,
                 and/or producers of the activity. These risks are not only inherent to participants, but are also present
                 for volunteers.
-
               </p>
-              <p>I hereby consent to receive medical treatment which may be deemed advisable in the event of injury, accident,
+
+              <p>I hereby consent to receive medical treatment, which may be deemed advisable in the event of injury, accident,
                 and/or illness during this activity. I understand while participating in this activity, I may be photographed.
                 I agree to allow my photo, video, or film likeness to be used for any legitimate purpose by the activity
-                holders, producers, sponsors, organizers, and assigns. </p>
+                holders, producers, sponsors, organizers, and assigns.
+              </p>
+
               <p>The Accident Waiver and Release of Liability Form shall be construed broadly to provide a release and waiver
                 to the maximum extent permissible under applicable law.
               </p>
+
               <p>I CERTIFY THAT I HAVE READ THIS DOCUMENT AND I FULLY UNDERSTAND ITS CONTENT. I AM AWARE THAT THIS IS A RELEASE
                 OF LIABILITY AND A CONTRACT AND I SIGN IT OF MY OWN FREE WILL.
               </p>
@@ -369,7 +373,8 @@
           <div class="p-detail-all">
             <div class="p-detail" [ngClass]="item?.type == 'EARLYBIRD' ? 'box-ac' : '' ">
               <div class="p-d-title">
-                Early Bird <span *ngIf="item?.type == 'MIDDLEBIRD' || item?.type == 'LATEBIRD'">(Closed)</span>
+                Early Bird
+                <span *ngIf="item?.type == 'MIDDLEBIRD' || item?.type == 'LATEBIRD'">(Closed)</span>
                 <h4>Conference</h4>
                 <p>
                   - Students/Affiliates: $140
@@ -379,14 +384,15 @@
                 </p>
                 <h4>Anthropological Excursion: $80</h4>
               </div>
-              <div class="p-d-des"> 
+              <div class="p-d-des">
                 <h4>March 1 - July 7, 2018 (UTC)</h4>
               </div>
             </div>
 
             <div class="p-detail" [ngClass]="item?.type == 'MIDDLEBIRD' ? 'box-ac' : '' ">
               <div class="p-d-title">
-                Middle Bird <span *ngIf="item?.type == 'LATEBIRD'">(Closed)</span>
+                Middle Bird
+                <span *ngIf="item?.type == 'LATEBIRD'">(Closed)</span>
                 <h4>Conference</h4>
                 <p>
                   - Students/Affiliates: $170
@@ -403,7 +409,8 @@
 
             <div class="p-detail" [ngClass]="item?.type == 'LATEBIRD' ? 'box-ac' : '' ">
               <div class="p-d-title">
-                Late Bird <span *ngIf="!item">(Closed)</span>
+                Late Bird
+                <span *ngIf="!item">(Closed)</span>
                 <h4>Conference</h4>
                 <p>
                   - Students/Affiliates: $200
