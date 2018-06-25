@@ -54,7 +54,8 @@ export class AppComponentBodyComponent implements OnInit {
   emc_email: AbstractControl;
   affiliate: AbstractControl;
   isTerm: AbstractControl;
-  student_id: AbstractControl
+  student_id: AbstractControl;
+  isUStudent: AbstractControl;
 
   iAgree: AbstractControl
 
@@ -77,12 +78,12 @@ export class AppComponentBodyComponent implements OnInit {
   phone: string;
   aba_email: string;
 
-  titles=[
-    {key:0,text:'Dr.'},
-    {key:1,text:'Mr.'},
-    {key:2,text:'Mis.'},
-    {key:3,text:'Ms.'},
-    {key:4,text:'None'},
+  titles = [
+    { key: 0, text: 'Dr.' },
+    { key: 1, text: 'Mr.' },
+    { key: 2, text: 'Mis.' },
+    { key: 3, text: 'Ms.' },
+    { key: 4, text: 'None' },
   ]
 
   constructor(
@@ -114,7 +115,7 @@ export class AppComponentBodyComponent implements OnInit {
           .valueChanges()
           .subscribe(docs => {
             let isStudent = false;
-            if ((this.university.value && this.student_id.value) || this.affiliate.value)
+            if (this.isUStudent.value || this.affiliate.value)
               isStudent = true;
             const priceList = docs.filter(m => m.isStudent === isStudent && m.code === 'REGULAR')
             const sortList = _.orderBy(priceList, ['endDateKey'], ['asc']);
@@ -143,13 +144,14 @@ export class AppComponentBodyComponent implements OnInit {
       city: [null,],
       country: [null, Validators.compose([Validators.required, this.validCountry.bind(this)])],
       university: [null,],
-      affiliate: [null,],
+      affiliate: [false,],
       zip_code: [null,],
       emergency_contact: [null,],
       emc_phone_number: [null,],
       emc_email: [null, Validators.compose([Validators.email])],
       isTerm: [false, Validators.required],
-      student_id: [null]
+      student_id: [null],
+      isUStudent: [false],
     });
 
     this.secondFormGroup = this.fb.group({
@@ -178,6 +180,7 @@ export class AppComponentBodyComponent implements OnInit {
     this.emc_email = this.firstFormGroup.controls['emc_email'];
     this.isTerm = this.firstFormGroup.controls['isTerm'];
     this.student_id = this.firstFormGroup.controls['student_id']
+    this.isUStudent = this.firstFormGroup.controls['isUStudent']
 
   };
 
@@ -304,7 +307,23 @@ export class AppComponentBodyComponent implements OnInit {
         this.qty = 1
       }
     }
+  }
 
+  changeIsstudent(e) {
+    if (e.checked) {
+      this.firstFormGroup.patchValue({
+        affiliate: false
+      })
+    }
+
+  }
+
+  changeIsAffiliate(e) {
+    if (e.checked) {
+      this.firstFormGroup.patchValue({
+        isUStudent: false
+      })
+    }
   }
 
 }

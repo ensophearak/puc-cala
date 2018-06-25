@@ -5,7 +5,7 @@
       <i class="material-icons rotate90 quote">
         format_quote
       </i>
-      Revitalization and Representation
+      <span>Revitalization and Representation</span>
       <i class="material-icons quote">
         format_quote
       </i>
@@ -14,7 +14,8 @@
       <i class="material-icons rotate90 quote">
         format_quote
       </i>
-      ការបង្ហាញពីការធ្វើអោយមានជីវិតរស់ឡើងវិញ
+      <!-- ការបង្ហាញពីការធ្វើអោយមានជីវិតរស់ឡើងវិញ -->
+      <span>ការធ្វើឲ្យមានជីវិតរស់ឡើងវិញ និង តំណាងភាព</span>
       <i class="material-icons quote">
         format_quote
       </i>
@@ -113,28 +114,16 @@
             <div class="alert-info">
               <div class="div-d">
                 <p>If you will attend the event as a student
-                  <b>or</b> an affiliate, please fill in below: (special price)</p>
+                  <b>or</b> an affiliate, please check below: (special price)</p>
               </div>
             </div>
           </div>
 
-          <div class="field">
-            <div class="two-field">
-              <mat-form-field class="f-input">
-                <input matInput placeholder="University Name:" formControlName="university">
-              </mat-form-field>
-            </div>
-            <div class="two-field">
-              <mat-form-field class="f-input">
-                <input matInput placeholder="Student ID:" formControlName="student_id">
-              </mat-form-field>
-            </div>
+          <div class="field f-checkBox">
+            <mat-checkbox (change)="changeIsstudent($event)" formControlName="isUStudent">Student</mat-checkbox>
           </div>
-
-          <div class="field">
-            <mat-form-field class="f-input">
-              <input matInput placeholder="Affiliate (click below, choose, and type in your affiliate)" formControlName="affiliate">
-            </mat-form-field>
+          <div class="field f-checkBox">
+            <mat-checkbox (change)="changeIsAffiliate($event)" formControlName="affiliate">Affiliate (click below, choose your affiliate)</mat-checkbox>
           </div>
           <div class="field">
             <a href="http://cala2019.puc.edu.kh/affiliates/" target="_blank">
@@ -276,7 +265,7 @@
       </form>
     </mat-step>
     <mat-step [stepControl]="thirdFormGroup">
-      <ng-template matStepLabel>Conference Packages / Pay</ng-template>
+      <ng-template matStepLabel>Conference Packages/Pay</ng-template>
       <form [formGroup]="thirdFormGroup">
         <div class="form-container package">
 
@@ -341,7 +330,7 @@
                   <div class="p-p-price" *ngIf="item?.price">{{itemPlue?.price}}</div>
                   <div class="p-p-price" *ngIf="!item?.price">330</div>
                 </div>
-                <div class="p-des">cala conference and sightseeing / anthropolofical program</div>
+                <div class="p-des">cala conference and sightseeing/anthropolofical excursion</div>
               </div>
               <div class="p-d-register">
                 <button mat-button class="p-register" [disabled]="loading || !item" (click)="onCheckOut(true)">Pay Now</button>
@@ -363,8 +352,8 @@
                   <li>Morning break refreshments</li>
                   <li>Daily buffet lunches</li>
                   <li>Afternoon break refreshments</li>
-                  <li>One gala buffet dinner with cultural shows</li>
-                  <li>1-day pass for Anthropological Excursion including ancient temples visits and lunch</li>
+                  <li>One gala buffet dinner with cultural show</li>
+                  <li>1-day pass for Anthropological Excursion including ancient temple visits and lunch</li>
                 </ul>
               </div>
             </div>
