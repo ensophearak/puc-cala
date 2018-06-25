@@ -156,6 +156,9 @@ app-component-body {
   .field {
     width: 100%;
     display: flex;
+    &.f-checkBox{
+      padding: 10px 0 10px 0;
+    }
     a{
       img{
         width: 56px;
