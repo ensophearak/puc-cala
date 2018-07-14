@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "puccala-b98b9"
+    "default": "puccala-b98b9",
+    "y": "puccala-b98b9",
+    "test": "puccala-b98b9"
   }
 }
