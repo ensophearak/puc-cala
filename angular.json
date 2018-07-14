@@ -34,8 +34,7 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "src/assets/js/jquery.js",
-              "src/assets/js/checkout-popup.js"
+              "src/assets/js/jquery.js"
             ]
           },
           "configurations": {
